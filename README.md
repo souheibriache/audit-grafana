@@ -60,7 +60,3 @@ docker-compose logs -f
 # Redémarrer les services
 docker-compose restart
 ```
-
----
-
-*Projet M1 - Système d'Audit et Monitoring*
