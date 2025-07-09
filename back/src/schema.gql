@@ -1,0 +1,149 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Avatar {
+  id: String!
+  url: String!
+}
+
+type Bet {
+  grandPrix: GrandPrix!
+  id: String!
+  pilot: Pilot!
+  points: Int
+  user: User!
+}
+
+input CreateBetInput {
+  grandPrixId: String!
+  pilotId: String!
+  userId: String!
+}
+
+input CreateLeagueInput {
+  name: String!
+  private: Boolean
+}
+
+input CreateUserInput {
+  email: String!
+  firstName: String
+  lastName: String
+  password: String
+  username: String!
+}
+
+type DeleteLeagueResponse {
+  message: String!
+  success: Boolean!
+}
+
+input GetBetByUserAndGrandPrixInput {
+  grandPrixId: String!
+  userId: String!
+}
+
+input GetLeagueInput {
+  adminId: String
+  id: String
+  name: String
+}
+
+input GetUserInput {
+  clerkId: String
+  email: String
+}
+
+type GrandPrix {
+  id: String!
+  ranking: [GrandPrixRanking!]
+}
+
+type GrandPrixRanking {
+  grandPrix: GrandPrix!
+  id: String!
+  isDNF: Boolean!
+  pilot: Pilot!
+  position: Int!
+}
+
+input JoinLeagueInput {
+  joinCode: String
+  leagueId: String!
+  userId: String
+}
+
+type League {
+  admin: User!
+  avatar: Avatar!
+  id: String!
+  joinCode: String
+  members: [User!]
+  name: String!
+  private: Boolean!
+}
+
+type Mutation {
+  createBet(createBetInput: CreateBetInput!): Bet!
+  createLeague(createLeagueInput: CreateLeagueInput!): League!
+  createLeagueWithUserId(createLeagueInput: CreateLeagueInput!, userId: String!): League!
+  createPilotteam(pilotId: String!, teamId: String!, year: String!): PilotTeam!
+  createUser(createUserInput: CreateUserInput!): User!
+  deleteLeague(leagueId: String!): DeleteLeagueResponse!
+  deleteLeagueWithUserId(leagueId: String!, userId: String!): DeleteLeagueResponse!
+  joinLeague(joinLeague: JoinLeagueInput!): League!
+  joinLeagueWithUserId(joinLeagueInput: JoinLeagueInput!, userId: String!): League!
+}
+
+type Pilot {
+  acronym: String
+  id: String!
+  name: String!
+  picture: String
+  pilotTeams: [PilotTeam!]
+}
+
+type PilotTeam {
+  getPilotteamName: String!
+  id: String!
+  pilot: Pilot!
+  team: Team!
+  year: String!
+}
+
+type Query {
+  getAllLeagues: [League!]!
+  getAllPilots: [Pilot!]!
+  getAvatar(id: String!): Avatar!
+  getAvatars: [Avatar!]!
+  getBet(getBetByUserAndGrandPrixInput: GetBetByUserAndGrandPrixInput!): Bet!
+  getLeague(input: GetLeagueInput!): League!
+  getPilotById(id: String!): Pilot
+  getPilotsWithCurrentTeam: [Pilot!]!
+  getPilotteams: [PilotTeam!]!
+  user(getUserInput: GetUserInput!): User!
+}
+
+type Team {
+  """Team's color in html format"""
+  color: String!
+  id: String!
+
+  """Team's logo URL"""
+  logo: String!
+  name: String!
+  pilots: [PilotTeam!]
+}
+
+type User {
+  avatar: Avatar
+  clerkId: String!
+  email: String!
+  firstName: String
+  id: String!
+  lastName: String
+  leagues: [League!]
+  password: String
+  username: String!
+}

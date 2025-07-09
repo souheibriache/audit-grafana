@@ -1,0 +1,6 @@
+projectKey=f1-betting-backend
+serverUrl=http://localhost:9000
+serverVersion=10.3.0.82913
+dashboardUrl=http://localhost:9000/dashboard?id=f1-betting-backend
+ceTaskId=AZesnJorSaM0lrRgYd-x
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AZesnJorSaM0lrRgYd-x

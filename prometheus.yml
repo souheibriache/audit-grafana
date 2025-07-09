@@ -1,0 +1,32 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+# Prometheus itself
+- job_name: 'prometheus'
+  static_configs:
+  - targets: [ 'localhost:9090' ]
+
+# Node Exporter for system metrics
+- job_name: 'node-exporter'
+  static_configs:
+  - targets: [ 'node-exporter:9100' ]
+
+# Your NestJS F1 Betting API
+- job_name: 'f1-betting-api'
+  static_configs:
+  - targets: [ 'host.docker.internal:4500' ]
+  metrics_path: '/metrics'
+  scrape_interval: 10s
+
+# Your Next.js Frontend (if you add metrics later)
+- job_name: 'f1-betting-frontend'
+  static_configs:
+  - targets: [ 'host.docker.internal:3000' ]
+  metrics_path: '/api/metrics'
+  scrape_interval: 10s
